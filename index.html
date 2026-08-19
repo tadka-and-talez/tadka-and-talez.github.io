@@ -1,0 +1,192 @@
+ <title>Tadka & Talez</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<div id="logoContainer">
+  <div id="titleContainer">
+    <h1 id="titleHeader"> <span id="titleTadka">Tadka</span><span id="titleAmpersand"> & </span><span id="titleTalez">Talez</span></h1>
+    <h1 id="titleHeaderOutline">Tadka & Talez</h1>
+  </div>
+
+  <div id="languageDropdownContainer">
+    <label id="languageDropdownLabel">Language▾</label>
+    <div id="languageDropdown">
+      <div id="langItm-separator"></div>
+      <button onclick="setPageLanguage('english')" class="dropdownItem" id="langItm-english">English</button>
+      <button onclick="setPageLanguage('hindi')" class="dropdownItem" id="langItm-hindi">हिंदी</button>
+      <button onclick="setPageLanguage('y')" class="dropdownItem" id="langItm-y">Y</button>
+      <button onclick="setPageLanguage('z')" class="dropdownItem" id="langItm-z">Z</button>
+
+    </div>
+  </div>
+  <h3 id="sloganHeader">Refuel your inner foodie!</h3>
+</div>
+<button id="orderButton" onclick="orderNow()">Order Now!</button>
+
+<style>
+   body {background-color: antiquewhite;}
+  
+  #titleContainer
+  {
+    position: relative;
+    display: inline-block;
+    color: white;
+    letter-spacing: 2px;
+    margin: 0;
+    font-family: "Sour Gummy", sans-serif;
+  }
+  #titleHeader
+  {
+    position: relative;
+    font-size: 40px;
+    z-index: 1;
+    margin: 0;
+  }
+  #titleHeaderOutline
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 40px;
+    color: transparent;
+    -webkit-text-stroke: 4px rgba(0, 0, 0, 0.8); 
+    z-index: 0;
+    margin: 0;
+  }
+  
+  #titleTadka{color: orange;}
+  #titleTalez{color: olive;}
+  
+  #sloganHeader
+  {
+    position: relative;
+    margin: 0;
+    margin-top: 3px;
+    margin-left: 2px;
+    color: rgba(0, 0, 0, 0.75);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  #logoContainer
+  { 
+    background-color: blanchedalmond;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    border-bottom: 2px dimgray solid;
+  }
+  
+  #languageDropdownContainer
+  {
+    position: absolute;
+    z-index: 100;
+    overflow: hidden;
+    height: 25px;
+    width: 85px;
+    top: 15px;
+    right: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: bisque;
+    padding: 6px;
+    padding-left: 12px;
+    border: 2px dimgray solid;
+    border-radius: 15px;
+    text-align: center;
+    transition: height 0.3s ease-in-out;
+  }
+  
+  #languageDropdownLabel{position: relative; margin-right: 2px; margin-bottom: 2px;}
+  
+  #languageDropdown{position: relative; opacity: 0.9; background-color: transparent; border: none; margin-top: 5px;}
+  
+  .dropdownItem
+  {
+    opacity: 0;
+    background-color: bisque;
+    border: none;
+    visibility: hidden;
+    width: 100%;
+    padding: 2px;
+    padding-left: 0px;
+    margin: 1px;
+    font-family: inherit;
+    transition: opacity 0.7s ease-in-out, visibility 0s ease-in-out;
+  }
+  .dropdownItem:hover{visibility: visible; background-color: rgba(255, 255, 255, 0.2); opacity: 1;}
+  
+  /* Show items on hover */
+  #languageDropdownContainer.open .dropdownItem
+  {
+    visibility: visible; 
+    opacity: 1;
+  }
+  #languageDropdownContainer.open{height: 130px;}
+  
+  #langItm-separator{height: 1px; border-top: 1px dimgray solid; width: 100%; padding: 0; padding-bottom: 2px; opacity: 0.75;}
+  
+  
+  #langItm-separator
+  {visibility: hidden; opacity: 0;}
+  #languageDropdownContainer.open #langItm-separator
+  {visibility: visible; opacity: 1; background-color: bisque;}
+  
+  #orderButton
+  {
+    margin-top: 15px;
+    margin-left: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: transparent;
+    border: 2px black solid;
+    border-radius: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    opacity: 0.9;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  #orderButton:hover{cursor: pointer; transform: scale(1.1);}
+</style>
+
+<script>
+  langMenu = document.getElementById("languageDropdownContainer")
+  
+  langMenu.onmouseenter = () => {langMenu.classList.add("open")}
+  langMenu.onmouseleave = () => {langMenu.classList.remove("open")}
+  
+  const languages = {
+    english: {
+      slogan: "Refuel your inner foodie!",
+      order_button: "Order Now!"
+    },
+    hindi: {
+      slogan: "-!",
+      order_button: "Order Karo!"
+    },
+    y: {
+      slogan: "WHYYYYYY??",
+      order_button: "Why don't you order?"
+    },
+    z: {
+      slogan: "*Snore* zzZzZzzZZzzZzz",
+      order_button: "zZzZZz..."
+    }
+  }
+  
+  function setPageLanguage(selectedLang)
+  {
+    if (!selectedLang){selectedLang = "english"}
+    langMenu.classList.remove("open");
+  
+    document.getElementById("sloganHeader").textContent = languages[selectedLang].slogan;
+    document.getElementById("orderButton").textContent = languages[selectedLang].order_button;
+  }
+  
+  function orderNow()
+  {
+    alert("Menu not available yet! Order via WhatsApp instead!");
+  }
+</script>
