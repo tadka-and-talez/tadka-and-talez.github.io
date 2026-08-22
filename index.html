@@ -25,8 +25,42 @@
 </div>
 <button id="orderButton" onclick="orderNow()">Order Now!</button>
 
+<footer id="footer">
+  <p>© 2026 Tadka & Talez. All rights reserved.</p>
+</footer>
+
 <style>
-   body {background-color: antiquewhite;}
+  body {background-color: antiquewhite;}
+  
+  * {box-sizing: border-box;}
+  
+  #footer
+  {
+    position: absolute;
+    background-color: #4f3d36;
+    color: white;
+    border-top: 2px dimgray solid;
+    opacity: 1;
+  
+    overflow: hidden;
+    height: 75px;
+    width: 100%;
+    margin-top: 200px;
+    left: 0;
+    bottom: 0px;
+    padding-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+  
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  #footer p
+  {
+    margin: 0;
+    margin-top: 7px;
+    font-size: 15px;
+    opacity: 0.7;
+  }
   
   #titleContainer
   {
@@ -36,6 +70,7 @@
     letter-spacing: 2px;
     margin: 0;
     font-family: "Sour Gummy", sans-serif;
+    user-select: none;
   }
   #titleHeader
   {
@@ -79,6 +114,7 @@
   
   #languageDropdownContainer
   {
+    box-sizing: content-box;
     position: absolute;
     z-index: 100;
     overflow: hidden;
@@ -133,26 +169,42 @@
   
   #orderButton
   {
-    margin-top: 15px;
+    position: absolute;
+    height: 75px;
+    width: 50%;
+    margin-top: 25px;
     margin-left: 5px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     background-color: transparent;
-    border: 2px black solid;
-    border-radius: 50px;
+    color: black;
+    border: 4px darkgoldenrod  solid;
+    border-radius: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    opacity: 0.9;
+    font-size: 150%;
+    font-weight: bold;
+    opacity: 1;
     transform: scale(1);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    left: 25%;
   }
   
-  #orderButton:hover{cursor: pointer; transform: scale(1.1);}
+  #orderButton:hover,
+  #orderButton:focus-visible
+  {
+    cursor: pointer;
+    transform: scale(1.07);
+    background-color: blanchedalmond;
+    border-color: goldenrod;
+    color: darkgoldenrod;
+  }
 </style>
 
+
 <script>
-  langMenu = document.getElementById("languageDropdownContainer")
+  const langMenu = document.getElementById("languageDropdownContainer")
   
   langMenu.onmouseenter = () => {langMenu.classList.add("open")}
   langMenu.onmouseleave = () => {langMenu.classList.remove("open")}
