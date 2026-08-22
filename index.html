@@ -248,8 +248,8 @@
   
   function viewMenu()
   {
-    // Redirect with lang parameter, shorten 'english' to 'en'
-    currentLang === "english" ? window.location.href = "/menu/?lang=en" : window.location.href = "/menu/?lang=" + encodeURIComponent(currentLang);
+    // Redirect with lang parameter, remove param if 'english'
+    currentLang === "english" ? window.location.href = "/menu/" : window.location.href = "/menu/?lang=" + encodeURIComponent(currentLang);
     // alert("Menu not available yet! Order via WhatsApp instead!");
   }
 
