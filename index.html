@@ -24,9 +24,7 @@
   <h3 id="sloganHeader">Refuel your inner foodie!</h3>
 </div>
 
-<a href="/menu/" style="text-decoration: none">
-  <button id="orderButton">Order Now!</button>
-</a>
+<button id="menuButton" onclick="viewMenu()">View Menu</button>
 
 <footer id="footer">
   <p>© 2026 Tadka & Talez. All rights reserved.</p>
@@ -170,7 +168,7 @@
   #languageDropdownContainer.open #langItm-separator
   {visibility: visible; opacity: 1; background-color: bisque;}
   
-  #orderButton
+  #menuButton
   {
     position: absolute;
     height: 75px;
@@ -194,8 +192,8 @@
     left: 25%;
   }
   
-  #orderButton:hover,
-  #orderButton:focus-visible
+  #menuButton:hover,
+  #menuButton:focus-visible
   {
     cursor: pointer;
     transform: scale(1.07);
@@ -207,6 +205,7 @@
 
 
 <script>
+  const supportedLangs = ["english", "hindi", "y", "z"];
   const langMenu = document.getElementById("languageDropdownContainer")
   
   langMenu.onmouseenter = () => {langMenu.classList.add("open")}
@@ -215,35 +214,43 @@
   const languages = {
     english: {
       slogan: "Refuel your inner foodie!",
-      order_button: "Order Now!"
+      menu_button: "View Menu"
     },
     hindi: {
       slogan: "-!",
-      order_button: "Order Karo!"
+      menu_button: "मेनू देखें"
     },
     y: {
       slogan: "WHYYYYYY??",
-      order_button: "Why don't you order?"
+      menu_button: "Why wouldn't you want to view the menu?"
     },
     z: {
       slogan: "*Snore* zzZzZzzZZzzZzz",
-      order_button: "zZzZZz..."
+      menu_button: "zZzZZz..."
     }
-  }
+  };
+  const lang_aliases = {eng: "english", en: "english"};
+
+  const lang = new URLSearchParams(window.location.search).get("lang");
+  let currentLang = supportedLangs.includes(lang) ? lang : "english"; 
+  if (lang_aliases[lang]) currentLang = lang_aliases[lang];
+  setPageLanguage(currentLang);
   
   function setPageLanguage(selectedLang)
   {
     if (!selectedLang){selectedLang = "english"}
+    currentLang = selectedLang; // Update current language
     langMenu.classList.remove("open");
   
     document.getElementById("sloganHeader").textContent = languages[selectedLang].slogan;
-    document.getElementById("orderButton").textContent = languages[selectedLang].order_button;
+    document.getElementById("menuButton").textContent = languages[selectedLang].menu_button;
   }
   
-  /* orderNow() no longer necessary due to button update
-  function orderNow()
+  function viewMenu()
   {
-    alert("Menu not available yet! Order via WhatsApp instead!");
+    // Redirect with lang parameter, shorten 'english' to 'en'
+    currentLang === "english" ? window.location.href = "/menu/?lang=en" : window.location.href = "/menu/?lang=" + encodeURIComponent(currentLang);
+    // alert("Menu not available yet! Order via WhatsApp instead!");
   }
-  */
+
 </script>
