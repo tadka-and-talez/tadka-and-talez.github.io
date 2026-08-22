@@ -23,7 +23,10 @@
   </div>
   <h3 id="sloganHeader">Refuel your inner foodie!</h3>
 </div>
-<button id="orderButton" onclick="orderNow()">Order Now!</button>
+
+<a href="/menu/" style="text-decoration: none">
+  <button id="orderButton">Order Now!</button>
+</a>
 
 <footer id="footer">
   <p>© 2026 Tadka & Talez. All rights reserved.</p>
@@ -237,8 +240,10 @@
     document.getElementById("orderButton").textContent = languages[selectedLang].order_button;
   }
   
+  /* orderNow() no longer necessary due to button update
   function orderNow()
   {
     alert("Menu not available yet! Order via WhatsApp instead!");
   }
+  */
 </script>
